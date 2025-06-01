@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  /* height: 200vh; */
+
+  background-color: #0c1019;
+}
+
+/* Global Styles */
+
+h1 {
+  font-size: 50px;
+  line-height: 64px;
+  color: #222;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 54px;
+  color: #222;
+}
+
+h4 {
+  font-size: 20px;
+  color: #222;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+p {
+  font-size: 16px;
+  color: #465b52;
+  margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+  padding: 40px 80px;
+}
+
+.section-m1 {
+  margin: 40px 0;
+}
+
+.section-s {
+  padding-top: 4vh;
+  height: 100vh;
+  /* margin: 0 10rem; */
+  box-sizing: border-box;
+  min-height: fit-content;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* HERO */
+
+#hero {
+  position: relative;
+  height: 96vh;
+  width: 100%;
+  padding: 0px 22vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/cpu0.png");
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+#hero h1 {
+  color: #b7f1ef;
+  font-size: 46px;
+  line-height: 66px;
+}
+#hero h4 {
+  color: #088178;
+}
+#hero p {
+  color: #82a0f3;
+  font-size: 24px;
+  margin: 5vh 12vh;
+  text-align: center;
+}
+
+#hero .mhero {
+  margin-left: 60px;
+}
+#hero .plang {
+  color: #04bb72;
+  font-family: "Courier Prime", Courier, monospace;
+  font-weight: bold;
+}
+#hero .colon {
+  color: #be794e;
+}
+#hero .brac {
+  color: #4b83fd;
+  font-family: "Courier Prime", Courier, monospace;
+  font-weight: bold;
+}
+
+#hero h1,
+#hero .plang,
+#hero .colon,
+#hero .brac {
+  -webkit-text-stroke: 1px #696868; /* Black outline */
+  paint-order: stroke fill; /* Ensures fill color appears above stroke */
+}
+
+/* UPLOAD */
+
+#chatBox {
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 300px;
+  overflow-y: scroll;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  margin-top: 10px;
+}

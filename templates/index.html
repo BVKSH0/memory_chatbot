@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Persona</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <section id="hero">
+      <h1>
+        <span class="plang">"project"</span>&nbsp;<span class="colon">:</span
+        >&nbsp;&nbsp;<span class="brac">{</span>
+        <br />
+        <span class="mhero"
+          ><span class="plang">"name"</span>&nbsp;<span class="colon">:</span
+          >&nbsp;"PERSONA",<br
+        /></span>
+        <span class="mhero"
+          ><span class="plang">"epigraph"</span>&nbsp;<span class="colon"
+            >:</span
+          >&nbsp;"More Than a Voice, Less Than a Soul",<br
+        /></span>
+        <span class="mhero"
+          ><span class="plang">"behavior"</span>&nbsp;<span class="colon"
+            >:</span
+          >&nbsp;"Mimics speech patterns from uploaded data",<br
+        /></span>
+        <span class="mhero"
+          ><span class="plang">"version"</span>&nbsp;<span class="colon">:</span
+          >&nbsp;"1.0", <br
+        /></span>
+        <span class="brac">}</span>
+      </h1>
+      <p
+        >We try to Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Nulla quos ratione ex nisi labore amet inventore, ducimus consequatur
+        magni, autem quis laudantium libero?</p
+      >
+    </section>
+
+    <section id="chatbox" class="section-s">
+      <h1>Upload Memories</h1>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="memory_file" required />
+        <button type="submit">Upload</button>
+      </form>
+
+      <div id="chatSection" style="display: none">
+        <h2>Chat with Your Loved One</h2>
+        <div id="chatBox"></div>
+        <input type="text" id="userInput" placeholder="Say something..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </section>
+
+    <script>
+      const uploadForm = document.getElementById("uploadForm");
+      uploadForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(uploadForm);
+        await fetch("/upload", { method: "POST", body: formData });
+        document.getElementById("chatSection").style.display = "block";
+      };
+
+      async function sendMessage() {
+        const input = document.getElementById("userInput");
+        const msg = input.value;
+        input.value = "";
+
+        const chatBox = document.getElementById("chatBox");
+        chatBox.innerHTML += `<p><strong>You:</strong> ${msg}</p>`;
+
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg }),
+        });
+
+        const data = await res.json();
+        chatBox.innerHTML += `<p><strong>MemoryBot:</strong> ${data.reply}</p>`;
+      }
+    </script>
+  </body>
+</html>
